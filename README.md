@@ -18,10 +18,6 @@ yourapp 2>&1 | tail-tones
 
 ## Requirements
 
-- No credentials needed: this tap and the source repo
-  (`btrachey/tail-tones-scala`) are public. (If you cloned them back when
-  they were private, `rm -rf "$(brew --cache)/tail-tones--git"` once to
-  refresh the cached clone.)
 - The formula builds from source with `sbt nativeLink` (Scala Native), so it
   pulls `sbt`, `openjdk`, and `llvm` as build deps. The first build downloads
   the Scala toolchain into a throwaway cache and takes a few minutes;
