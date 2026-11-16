@@ -2,10 +2,10 @@ class TailTones < Formula
   desc "Sonify application logs: tail + tee + live audio severity bed"
   homepage "https://github.com/btrachey/tail-tones-scala"
   # History was rewritten 2026-11-16 to purge a secret-bearing stray file;
-  # tag:/revision: below are the post-rewrite v0.1.0.
+  # tags/revisions from v0.1.0 on are post-rewrite.
   url "https://github.com/btrachey/tail-tones-scala.git",
-      tag:      "v0.1.0",
-      revision: "1d255e71497121521e3788f2f388e667f3c1cb37"
+      tag:      "v0.1.1",
+      revision: "fb2814eb122558ef0a07806e86059c52cea39444"
   head "https://github.com/btrachey/tail-tones-scala.git", branch: "main"
 
   livecheck do

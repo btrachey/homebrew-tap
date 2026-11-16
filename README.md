@@ -25,7 +25,7 @@ yourapp 2>&1 | tail-tones
 
 ## Updating
 
-The stable formula is pinned to the `v0.1.0` tag (+ full `revision:`).
+The stable formula is pinned to the latest upstream tag (+ full `revision:`).
 To run the repo's `main` tip instead (brew 7 has no `brew switch`, and
 `reinstall` has no `--HEAD` option):
 
