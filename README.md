@@ -28,6 +28,8 @@ yourapp 2>&1 | tail-tones
 
 ## Updating
 
-The formula tracks `main`. `brew reinstall tail-tones` rebuilds against the
-current tip. When the source repo grows real version tags, pin the formula
-`url` to a `tag:` + `revision:` and bump `version` accordingly.
+The stable formula is pinned to the `v0.1.0` tag (+ full `revision:`).
+`brew install --HEAD tail-tones` builds from the repo's `main` instead.
+To ship a new version: tag upstream, then update `tag:`/`revision:` in the
+formula. No `livecheck` is configured — the private repo's tag API is not
+queryable unauthenticated, so `brew outdate` would always 404.
