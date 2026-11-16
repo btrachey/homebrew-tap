@@ -18,9 +18,10 @@ yourapp 2>&1 | tail-tones
 
 ## Requirements
 
-- The source repo (`btrachey/tail-tones-scala`) is **private**; cloning it
-  needs GitHub credentials. If the [GitHub CLI](https://cli.github.com/) is
-  logged in (`gh auth login`), Homebrew uses its token automatically.
+- No credentials needed: this tap and the source repo
+  (`btrachey/tail-tones-scala`) are public. (If you cloned them back when
+  they were private, `rm -rf "$(brew --cache)/tail-tones--git"` once to
+  refresh the cached clone.)
 - The formula builds from source with `sbt nativeLink` (Scala Native), so it
   pulls `sbt`, `openjdk`, and `llvm` as build deps. The first build downloads
   the Scala toolchain into a throwaway cache and takes a few minutes;
@@ -37,6 +38,6 @@ brew unlink tail-tones && brew install --HEAD tail-tones   # switch to main
 brew uninstall tail-tones && brew install tail-tones       # switch back
 ```
 
-To ship a new version: tag upstream, then update `tag:`/`revision:` in the
-formula. No `livecheck` is configured — the private repo's tag API is not
-queryable unauthenticated, so `brew outdate` would always 404.
+To ship a new version: tag upstream (`vX.Y.Z`), then update `tag:`/`revision:`
+in the formula. `livecheck` reads the upstream git tags, so
+`brew livecheck tail-tones` reports when they drift.

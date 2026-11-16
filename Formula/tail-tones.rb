@@ -1,14 +1,18 @@
 class TailTones < Formula
   desc "Sonify application logs: tail + tee + live audio severity bed"
   homepage "https://github.com/btrachey/tail-tones-scala"
-  # The source repo is private; cloning it needs GitHub credentials (brew
-  # reuses the `gh` token or any configured git credential helper).
-  # No livecheck: the repo is private, so tag queries would 404 unauthenticated.
-  # Bump by re-tagging upstream, then updating tag:/revision: here.
+  # History was rewritten 2026-11-16 to purge a secret-bearing stray file;
+  # tag:/revision: below are the post-rewrite v0.1.0.
   url "https://github.com/btrachey/tail-tones-scala.git",
       tag:      "v0.1.0",
-      revision: "2c75029ee761c258b11acdf7ceb5c4e92f80b50a"
+      revision: "1d255e71497121521e3788f2f388e667f3c1cb37"
   head "https://github.com/btrachey/tail-tones-scala.git", branch: "main"
+
+  livecheck do
+    url :stable
+    strategy :git
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
 
   depends_on "llvm" => :build
   depends_on "openjdk" => :build
