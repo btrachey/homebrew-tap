@@ -29,7 +29,14 @@ yourapp 2>&1 | tail-tones
 ## Updating
 
 The stable formula is pinned to the `v0.1.0` tag (+ full `revision:`).
-`brew install --HEAD tail-tones` builds from the repo's `main` instead.
+To run the repo's `main` tip instead (brew 7 has no `brew switch`, and
+`reinstall` has no `--HEAD` option):
+
+```sh
+brew unlink tail-tones && brew install --HEAD tail-tones   # switch to main
+brew uninstall tail-tones && brew install tail-tones       # switch back
+```
+
 To ship a new version: tag upstream, then update `tag:`/`revision:` in the
 formula. No `livecheck` is configured — the private repo's tag API is not
 queryable unauthenticated, so `brew outdate` would always 404.

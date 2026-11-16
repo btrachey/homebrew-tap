@@ -15,9 +15,10 @@ class TailTones < Formula
   depends_on "sbt" => :build
 
   # sbt/coursier resolve the Scala + Scala Native toolchain from Maven
-  # Central during the build; caches live in the fake $HOME that the build
-  # sandbox provides.
-  allow_network_access! :build
+  # Central during the build. Build-phase network is allow-by-default
+  # (formula.rb DEFAULT_NETWORK_ACCESS_ALLOWED), and the caches land under
+  # the sandbox's redirected java user.home (HOMEBREW_CACHE/java_cache) —
+  # so no allow_network_access! here: the scoped form would deny :test/:postinstall.
 
   def install
     ENV["CI"] = "TRUE"
@@ -35,7 +36,9 @@ class TailTones < Formula
   end
 
   test do
-    assert_match version.to_s, shell_output("#{bin}/tail-tones --version")
+    # The binary prints its COMPILE-time version (Args.VersionString), so a
+    # formula-side version.to_s would break --HEAD builds and revision bumps.
+    assert_match(/\Atail-tones \d+\.\d+\.\d+/, shell_output("#{bin}/tail-tones --version"))
 
     # The tee contract: with the null backend, stdout is byte-for-byte the input.
     (testpath/"app.log").write <<~LOG
